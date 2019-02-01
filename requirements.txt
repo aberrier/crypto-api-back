@@ -1,0 +1,5 @@
+mysqlclient
+python-dotenv
+django
+django-rest-auth
+djangorestframework

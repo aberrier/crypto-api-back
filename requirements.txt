@@ -3,3 +3,4 @@ python-dotenv
 django
 django-rest-auth
 djangorestframework
+django-enumfields

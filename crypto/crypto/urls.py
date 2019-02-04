@@ -19,6 +19,7 @@ from rest_framework.authtoken import views as authviews
 
 urlpatterns = [
     path('', include('prime.urls')),
+    path('coin/',include('coinapi.urls')),
     path('admin/', admin.site.urls),
     path('login/', authviews.obtain_auth_token, name='login'),
     path('logout/', auth.logout, name='logout'),

@@ -4,3 +4,5 @@ django
 django-rest-auth
 djangorestframework
 django-enumfields
+drf-enum-field
+requests

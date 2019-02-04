@@ -5,11 +5,10 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('users', views.UserViewSet)
-router.register('alerts', views.AlertViewSet)
+router.register('alerts', views.AlertViewSet, basename='get_queryset')
 
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<int:num>', views.index, name='index'),
     path('', include(router.urls)),
 ]

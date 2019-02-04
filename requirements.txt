@@ -6,3 +6,7 @@ djangorestframework
 django-enumfields
 drf-enum-field
 requests
+redis
+celery
+django-celery-beat
+gunicorn

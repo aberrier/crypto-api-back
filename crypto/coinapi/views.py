@@ -12,7 +12,7 @@ def view_coin_price(request, asset, time=None):
 
 
 def get_coin_price(asset, time=None):
-    url = 'https://rest.coinapi.io/v1/exchangerate/{}/USD'.formacdt(asset)
+    url = 'https://rest.coinapi.io/v1/exchangerate/{}/USD'.format(asset)
     if time is not None:
         url = url + '?time={}'.format(time)
     headers = {'X-CoinAPI-Key': os.environ.get('COIN_API_KEY', '')}

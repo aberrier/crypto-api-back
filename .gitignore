@@ -1,3 +1,4 @@
+crypto/celerybeat-schedule.db
 .idea/*
 .idea/
 # Byte-compiled / optimized / DLL files

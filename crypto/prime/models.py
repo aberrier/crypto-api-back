@@ -31,6 +31,7 @@ class Alert(models.Model):
     value = models.IntegerField(blank=False)
     crypto = models.CharField(max_length=200, blank=False)
     time_range = models.DateTimeField(default=datetime.now, blank=True)
+    last_sent = models.DateTimeField(default=datetime.fromtimestamp(0), blank=True)
     # Timestamps
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

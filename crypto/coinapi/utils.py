@@ -3,8 +3,7 @@ import os
 import requests
 
 
-def send_mail(alert):
-    pass
+
 
 
 def get_list_assets():

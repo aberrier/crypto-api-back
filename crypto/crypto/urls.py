@@ -18,8 +18,8 @@ from django.urls import path, include
 from rest_framework.authtoken import views as authviews
 
 urlpatterns = [
-    path('', include('prime.urls')),
-    path('coin/',include('coinapi.urls')),
+    path('', include('prime.urls', namespace='prime')),
+    path('coin/', include('coinapi.urls', namespace='coinapi')),
     path('admin/', admin.site.urls),
     path('login/', authviews.obtain_auth_token, name='login'),
     path('logout/', auth.logout, name='logout'),

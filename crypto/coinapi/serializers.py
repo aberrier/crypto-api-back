@@ -1,12 +1,10 @@
 from rest_framework import serializers
 
+from .models import Asset
 
-class CoinAPISerializer(serializers.Serializer):
-    def create(self, validated_data):
-        pass
 
-    def update(self, instance, validated_data):
-        pass
+class AssetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Asset
+        fields = ('id', 'value')
 
-    crypto = serializers.CharField(max_length=20)
-    time = serializers.TimeField()

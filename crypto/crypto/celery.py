@@ -20,15 +20,14 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
-app.autodiscover_tasks(['crypto.celery.alerts'])
 app.conf.beat_schedule = {
-    'alerts-email-every-15-minutes': {
+    'alerts-send-to-email': {
         'task': 'alerts.send_emails',
         'schedule': timedelta(seconds=10)
     },
     'check-assets-list': {
-        'task': 'alerts.asset_list',
-        'schedule': timedelta(seconds=2)
+        'task': 'coinapi.asset_list',
+        'schedule': timedelta(hours=2)
     },
 }
 

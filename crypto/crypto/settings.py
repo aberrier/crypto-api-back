@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'abc')
 DEBUG = bool(int(os.environ.get('DJANGO_DEBUG', '0')))
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOST', '').split()
 
-# Celery constants
+# Celery settings
 CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://localhost:6379')
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_BROKER_URL', 'redis://localhost:6379')
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -33,9 +33,18 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Paris'
 
+# Email settings
+EMAIL_HOST = os.environ.get('EMAIL_HOST', '')
+EMAIL_PORT = os.environ.get('EMAIL_PORT', '')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', '')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', '')
+
 # Application definition
 
 INSTALLED_APPS = [
+    'coinapi',
     'prime',
     'rest_framework',
     'rest_framework.authtoken',

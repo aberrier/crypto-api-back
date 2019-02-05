@@ -15,7 +15,9 @@
     {% render_form serializer %}
     <input type="submit" value="Save">
 </form>
-
+{% if errors %}
+{{errors}}
+{% endif %}
 </body>
 
 </html>

@@ -32,5 +32,5 @@ class AlertSerializer(EnumFieldSerializerMixin, serializers.ModelSerializer):
 
     class Meta:
         model = Alert
-        fields = ('id', 'crypto', 'value', 'time_range', 'type', 'user', 'last_sent')
-        read_only_fields = ('created', 'updated', 'user')
+        fields = ('id', 'crypto', 'value', 'time_range', 'type', 'user')
+        read_only_fields = ('created', 'updated', 'user', 'last_sent')

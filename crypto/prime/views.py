@@ -52,8 +52,7 @@ class AlertCreate(APIView):
     def post(self, request):
         serializer = AlertSerializer(data=request.data)
         if not serializer.is_valid():
-            print(serializer.errors)
-            return Response({'serializer': serializer})
+            return Response({'serializer': serializer, 'errors': serializer.errors})
         r = form_cleaner(request.data)
         print(r)
         instance = Alert(**r)
@@ -76,6 +75,6 @@ class AlertUpdate(APIView):
         profile = get_object_or_404(Alert, pk=pk)
         serializer = AlertSerializer(profile, data=request.data)
         if not serializer.is_valid():
-            return Response({'serializer': serializer, 'profile': profile})
+            return Response({'serializer': serializer, 'profile': profile, 'errors': serializer.errors})
         serializer.save()
         return redirect('prime:index')

@@ -5,9 +5,27 @@
 {% block content %}
 {% if user.is_authenticated %}
     Hi {{ user.username }}!
+    <p> your profile</p>
+    <p>username : {{user.username}}</p>
+    <p>email : {{user.email}}</p>
     <p><a href="{% url 'logout' %}">logout</a></p>
+    <div>
+        <p>List of alerts</p>
+        <p><a href="{% url 'prime:alerts_create' %}">create alert</a></p>
+        {% for alert in alerts %}
+        {% if alert.type|lower == 'increase' or alert.type|lower == 'decrease' %}
+            <p>{{alert.crypto}} {{alert.type|lower}} more than {{alert.value}}% starting at {{alert.time_range}}</p>
+        {% else %}
+            <p>{{alert.crypto}} go {{alert.type|lower}} {{alert.value}}$</p>
+        {% endif %}
+        <p><a href="{% url 'prime:alerts_delete' pk=alert.id %}">delete</a></p>
+        {% endfor %}
+
+    </div>
+
 {% else %}
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">login</a>
+    <a href="{% url 'prime:register' %}">register</a>
 {% endif %}
 {% endblock %}

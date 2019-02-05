@@ -8,9 +8,9 @@
 
 <body>
 
-<h1>Profile - {{ profile.name }}</h1>
+<h1>Profile - {{ profile.id }}</h1>
 
-<form action="{% url 'prime:alerts:alert-detail' pk=profile.pk %}" method="POST">
+<form action="{% url 'prime:alerts_update' pk=profile.pk %}" method="POST">
     {% csrf_token %}
     {% render_form serializer %}
     <input type="submit" value="Save">

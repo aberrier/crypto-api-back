@@ -14,3 +14,12 @@ def send_alert_to_email(subject, message, receiver):
     pass
 
 
+# Hacky way to transform form data into readable data by the model constructor
+def form_cleaner(querydict):
+    r = dict(querydict.copy())
+    del r['csrfmiddlewaretoken']
+    for key in list(r):
+        r[key] = r[key][0]
+        if r[key] == '':
+            del r[key]
+    return r

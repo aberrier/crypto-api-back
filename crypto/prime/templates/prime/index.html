@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Crypto API</title>
-    {% load static %}
+{% extends 'prime/base.html' %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'prime/style.css' %}">
-    <link rel="shortcut icon" type="image/ico" href="{% static 'prime/favicon.ico' %}"/>
-</head>
-<body>
-    <h1>Salut toi</h1>
-    {% if num %}
-    <div>{{num}}</div>
-    {% endif %}
-</body>
-</html>
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">login</a>
+{% endif %}
+{% endblock %}

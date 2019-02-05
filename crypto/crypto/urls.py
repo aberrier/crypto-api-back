@@ -22,6 +22,6 @@ urlpatterns = [
     path('coin/', include('coinapi.urls', namespace='coinapi')),
     path('admin/', admin.site.urls),
     path('login/', authviews.obtain_auth_token, name='login'),
-    path('logout/', auth.logout, name='logout'),
+    path('accounts/', include('django.contrib.auth.urls'))
 
 ]

@@ -122,7 +122,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+LOGIN_REDIRECT_URL = 'prime:index'
+LOGOUT_REDIRECT_URL = 'prime:index'
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 

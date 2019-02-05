@@ -4,7 +4,7 @@ COPY ./requirements.txt /requirements.txt
 RUN pip install --no-cache-dir -r /requirements.txt
 
 COPY . /app
-WORKDIR /app
+WORKDIR /app/crypto
 
 EXPOSE 8000/tcp
-ENTRYPOINT ["gunicorn",  "-w",  "4", "-b",  "0.0.0.0:8000", "api.wsgi"]
+ENTRYPOINT ["gunicorn",  "-w",  "4", "-b",  "0.0.0.0:8000", "crypto.wsgi"]

@@ -1,0 +1,39 @@
+version: '2'
+services:
+  redis:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    networks:
+      - redis-net
+    volumes:
+      - redis-data:/data
+    restart: always
+  api:
+    build: .
+    restart: always
+    ports:
+      - "8010:8000"
+    env_file: .env
+
+  celery:
+    networks:
+      - redis-net
+    build:
+      context: .
+      dockerfile: crypto/crypto/Dockerfile
+    command: celery -A crypto worker -B --concurrency=20 --loglevel=info
+    restart: always
+    env_file: .env
+    environment:
+      - CELERY_BROKER_URL=redis://redis
+      - CELERY_DEBUG = 0
+      - DJANGO_SETTINGS_MODULE = crypto.crypto.settings
+    depends_on:
+      - api
+
+networks:
+  redis-net:
+
+volumes:
+  redis-data:

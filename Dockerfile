@@ -7,4 +7,7 @@ COPY . /app
 WORKDIR /app/crypto
 
 EXPOSE 8000/tcp
-ENTRYPOINT ["gunicorn",  "-w",  "4", "-b",  "0.0.0.0:8000", "crypto.wsgi"]
+
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -2,7 +2,7 @@ import os
 from datetime import timedelta
 
 from dotenv import load_dotenv, find_dotenv
-
+from celery.schedules import crontab
 # Load .env
 load_dotenv(find_dotenv())
 from celery import Celery
@@ -23,11 +23,11 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'alerts-send-to-email': {
         'task': 'alerts.send_emails',
-        'schedule': timedelta(hours=4)
+        'schedule': crontab(hour=4)
     },
     'check-assets-list': {
         'task': 'coinapi.asset_list',
-        'schedule': timedelta(hours=24)
+        'schedule': crontab(hour=23)
     },
 }
 

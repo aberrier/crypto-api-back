@@ -52,8 +52,10 @@ class AlertCreate(APIView):
     def post(self, request):
         serializer = AlertSerializer(data=request.data)
         if not serializer.is_valid():
+            print(serializer.errors)
             return Response({'serializer': serializer})
         r = form_cleaner(request.data)
+        print(r)
         instance = Alert(**r)
         instance.user = request.user
         instance.save()

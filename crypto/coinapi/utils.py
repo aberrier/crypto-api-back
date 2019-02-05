@@ -3,9 +3,6 @@ import os
 import requests
 
 
-
-
-
 def get_list_assets():
     headers = {'X-CoinAPI-Key': os.environ.get('COIN_API_KEY', '')}
     r = requests.get('https://rest.coinapi.io/v1/assets', headers=headers)

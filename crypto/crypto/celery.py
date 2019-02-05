@@ -23,7 +23,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'alerts-send-to-email': {
         'task': 'alerts.send_emails',
-        'schedule': timedelta(seconds=10)
+        'schedule': timedelta(seconds=30)
     },
     'check-assets-list': {
         'task': 'coinapi.asset_list',

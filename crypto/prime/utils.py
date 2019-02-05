@@ -11,5 +11,6 @@ def send_alert_to_email(subject, message, receiver):
         [receiver],
         fail_silently=False,
     )
+    pass
 
 

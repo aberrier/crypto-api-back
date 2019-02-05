@@ -28,7 +28,7 @@ class Alert_Type(Enum):
 class Alert(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     type = EnumField(Alert_Type, max_length=20, blank=False)
-    value = models.IntegerField(blank=False)
+    value = models.PositiveIntegerField(blank=False)
     crypto = models.CharField(max_length=200, blank=False)
     time_range = models.DateTimeField(default=datetime.now, blank=True)
     last_sent = models.DateTimeField(default=datetime.fromtimestamp(0), blank=True)

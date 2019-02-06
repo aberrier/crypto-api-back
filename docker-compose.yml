@@ -16,7 +16,7 @@ services:
       - "8010:8000"
     env_file: .env
     volumes:
-      - /static:/app/static
+      - /static:/app/static/crypto
   celery:
     networks:
       - redis-net

@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Oh!</title>
-</head>
+{% extends 'prime/base.html' %}
 {% load rest_framework %}
 
-<body>
+{% block content %}
 
-<h1>Profile - {{ profile.id }}</h1>
+<h1>Alert n°{{ profile.id }}</h1>
 
 <form action="{% url 'prime:alerts_update' pk=profile.pk %}" method="POST">
     {% csrf_token %}
@@ -18,6 +13,4 @@
 {% if errors %}
 {{errors}}
 {% endif %}
-</body>
-
-</html>
+{% endblock %}

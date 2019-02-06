@@ -1,18 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Crypto API</title>
     {% load static %}
-
-    <link rel="stylesheet" type="text/css" href="{% static 'prime/style.css' %}">
     <link rel="shortcut icon" type="image/ico" href="{% static 'prime/favicon.ico' %}"/>
-</head>
-<body>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+    <meta name="description" content="Free API for crypto alerts">
+    <meta name="keywords" content="crypto, api, cryptocurrencies">
 
-</body>
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'prime/css/styles-merged.css' %}">
+    <link rel="stylesheet" href="{% static 'prime/css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'prime/css/custom.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="{% static 'prime/js/vendor/html5shiv.min.js' %}"></script>
+      <script src="{% static 'prime/js/vendor/respond.min.js' %}"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  <!-- START: header -->
+
+  <div class="probootstrap-loader"></div>
+
+  <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="{% url 'prime:index' %}" class="probootstrap-logo">Crypto API<span>.</span></a>
+
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li class="active"><a href="{% url 'prime:index' %}">Home</a></li>
+            <li><a href="{% url 'doc' %}">Swagger</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'prime:register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+    </div>
+  </header>
+  <!-- END: header -->
+  {% block content %}
+  {% endblock %}
+  <div class="probootstrap-section"></div>
+  <footer class="probootstrap-footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="probootstrap-copyright">&copy; 2019 Alain Berrier. API made for <a href="http://seelk.co">Seelk</a></p>
+          <ul class="probootstrap-social">
+            <li><a href="https://github.com/aberrier"><i class="icon-github2"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+  </div>
+
+
+  <script src="{% static 'prime/js/scripts.min.js' %}"></script>
+  <script src="{% static 'prime/js/main.min.js' %}"></script>
+  <script src="{% static 'prime/js/custom.js' %}"></script>
+
+  </body>
 </html>

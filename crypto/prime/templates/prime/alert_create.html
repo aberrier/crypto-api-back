@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Oh!</title>
-</head>
+{% extends 'prime/base.html' %}
 {% load rest_framework %}
 
-<body>
+{% block content %}
+    <div class="probootstrap-section">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 mb40">
+              <h2>Create a new alert</h2>
+                <form action="{% url 'prime:alerts_create' %}" method="POST">
+                    {% csrf_token %}
+                    {% render_form serializer %}
+                    <input type="submit" class="btn btn-primary" value="Create">
+                </form>
+            </div>
+          </div>
+        </div>
+    </div>
 
-<h1>New Profile </h1>
 
-<form action="{% url 'prime:alerts_create' %}" method="POST">
-    {% csrf_token %}
-    {% render_form serializer %}
-    <input type="submit" value="Save">
-</form>
 {% if errors %}
 {{errors}}
 {% endif %}
-</body>
-
-</html>
+{% endblock %}

@@ -3,30 +3,47 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<p><a href="{% url 'doc' %}">Documentation</a></p>
 {% if user.is_authenticated %}
-    Hi {{ user.username }}!
-    <p> your profile</p>
-    <p>username : {{user.username}}</p>
-    <p>email : {{user.email}}</p>
-    <p><a href="{% url 'logout' %}">logout</a></p>
+    <div class="probootstrap-section">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 mb40">
+              <h2>Hi {{ user.username }} !</h2>
+              <p>Your email : {{user.email}}</p>
+            </div>
+          </div>
+        </div>
+    </div>
     <div>
-        <p>List of alerts</p>
-        <p><a href="{% url 'prime:alerts_create' %}">create alert</a></p>
-        {% for alert in alerts %}
-        {% if alert.type|lower == 'increase' or alert.type|lower == 'decrease' %}
-            <p>{{alert.crypto}} {{alert.type|lower}} more than {{alert.value}}% starting at {{alert.time_range}}</p>
-        {% else %}
-            <p>{{alert.crypto}} go {{alert.type|lower}} {{alert.value}}$</p>
-        {% endif %}
-        <p><a href="{% url 'prime:alerts_delete' pk=alert.id %}">delete</a></p>
-        {% endfor %}
+    <div class="container text-center">
+            <h1>List of alerts</h1>
+            <p><a href="{% url 'prime:alerts_create' %}" class="btn btn-primary">Create a new alert</a></p>
+            {% for alert in alerts %}
+            {% if alert.type|lower == 'increase' or alert.type|lower == 'decrease' %}
+                <h2>{{alert.crypto}} {{alert.type|lower}} more than {{alert.value}}% starting at {{alert.time_range}}</h2>
+            {% else %}
+                <h2>{{alert.crypto}} go {{alert.type|lower}} {{alert.value}}$</h2>
+            {% endif %}
+            <span><a href="{% url 'prime:alerts_delete' pk=alert.id %}"class="btn btn-primary">delete</a></span>
+            {% endfor %}
+    </div>
+
 
     </div>
 
 {% else %}
-    <p>You are not logged in</p>
-    <a href="{% url 'login' %}">login</a>
-    <a href="{% url 'prime:register' %}">register</a>
+    <div class="probootstrap-section">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 mb40">
+              <h2>Welcome on CryptoAPI by Alain BERRIER</h2>
+                <p>This API will help you create alerts on cryptocurrencies when they go above or below a certain point.</p>
+                <p>You can even know if a cryptocurrency increased or decrease of a certain percentage.</p>
+                <p>All alerts will be sent by email.</p>
+                <p><strong>Start now by creating an account !</strong></p>
+            </div>
+          </div>
+        </div>
+    </div>
 {% endif %}
 {% endblock %}

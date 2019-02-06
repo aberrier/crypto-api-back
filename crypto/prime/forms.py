@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 
 class CustomUserCreationForm(UserCreationForm):
+    """
+    Custom form to allow email input
+    """
     class Meta:
         model = User
         fields = ("username", "email")
@@ -10,6 +13,9 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
+    """
+    Custom form to allow email input
+    """
     class Meta:
         model = User
         fields = ("username", "email")

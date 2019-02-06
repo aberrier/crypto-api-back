@@ -1,8 +1,9 @@
+# File configuration for Celery
 import os
-from datetime import timedelta
 
-from dotenv import load_dotenv, find_dotenv
 from celery.schedules import crontab
+from dotenv import load_dotenv, find_dotenv
+
 # Load .env
 load_dotenv(find_dotenv())
 from celery import Celery
@@ -23,7 +24,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'alerts-send-to-email': {
         'task': 'alerts.send_emails',
-        'schedule': crontab(hour=4)
+        'schedule': crontab(hour=2)
     },
     'check-assets-list': {
         'task': 'coinapi.asset_list',

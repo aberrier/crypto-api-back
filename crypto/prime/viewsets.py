@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.http import JsonResponse
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -12,7 +11,6 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
@@ -52,6 +50,7 @@ class AlertViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = Alert(**request.data)
+        # Add current authenticated user
         instance.user = request.user
         instance.save()
         serializer = self.get_serializer(instance)

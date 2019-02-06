@@ -1,27 +1,22 @@
-"""crypto URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin, auth
 from django.urls import path, include
 from rest_framework.authtoken import views as authviews
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Crypto API')
 
 urlpatterns = [
+    # Documentation
+    path('doc/', schema_view, name='doc'),
+    # Prime URLS
     path('', include('prime.urls', namespace='prime')),
+    # CoinAPI URLS
     path('coin/', include('coinapi.urls', namespace='coinapi')),
+    # Default admin panel
     path('admin/', admin.site.urls),
+    # REST Endpoint for API Token
     path('login/', authviews.obtain_auth_token, name='login'),
+    # Default registration endpoints
     path('accounts/', include('django.contrib.auth.urls'))
 
 ]

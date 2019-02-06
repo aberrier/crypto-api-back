@@ -9,6 +9,12 @@ from .utils import get_coin_price
 
 @api_view(['GET'])
 def view_coin_price(request, asset, time=None):
+    """
+    Endpoint for querying the CoinAPI
+    :param asset: str
+    :param time: datetime.datetime.isoformat
+    :return: JsonResponse
+    """
     return JsonResponse(get_coin_price(asset, time))
 
 

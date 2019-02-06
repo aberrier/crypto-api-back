@@ -2,5 +2,5 @@ from django.contrib import admin
 
 from .models import Alert
 
-# Register your models here.
+# Register the Alert model in the admin panel
 admin.site.register(Alert)

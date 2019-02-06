@@ -1,3 +1,4 @@
+# Celery important tasks
 import os
 
 from celery import shared_task
@@ -11,8 +12,15 @@ email_cycle = int(os.environ.get('EMAIL_REFRESH_CYCLE', '24'))
 
 @shared_task(name="alerts.send_emails")
 def send_emails():
-    # Inner function to avoid redundancy
+    """
+    Send emails for every alert that has been activated
+    """
     def _send_emails(_subject, _message):
+        """
+        Inner function to avoid redundancy
+        :param _subject: str
+        :param _message: str
+        """
         nonlocal nb_emails, alert
         # Send email
         send_alert_to_email(_subject, _message, alert.user.email)

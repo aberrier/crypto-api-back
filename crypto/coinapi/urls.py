@@ -5,8 +5,10 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('assets', views.AssetViewSet)
+
 app_name = 'coinapi'
 urlpatterns = [
+    # Urls for querying the API
     path('price/<str:asset>', views.view_coin_price, name='price'),
     path('price/<str:asset>/<str:time>', views.view_coin_price, name='price'),
     path('', include(router.urls))

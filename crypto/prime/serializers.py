@@ -7,6 +7,9 @@ from coinapi.models import Asset
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for default User model
+    """
     email = serializers.EmailField(required=True)
     password = serializers.CharField(min_length=8, write_only=True, allow_blank=False)
 
@@ -16,9 +19,16 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class AlertSerializer(EnumFieldSerializerMixin, serializers.ModelSerializer):
+    """
+    Serializer for Alert model
+    """
     @staticmethod
-    # Method for checking if an asset exist or not.
     def check_asset(asset):
+        """
+        Check if an asset exist or not.
+        :param asset:
+        :return: bool
+        """
         return bool(Asset.objects.filter(value=asset).count())
 
     def validate(self, data):

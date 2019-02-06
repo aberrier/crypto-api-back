@@ -3,6 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<p><a href="{% url 'doc' %}">Documentation</a></p>
 {% if user.is_authenticated %}
     Hi {{ user.username }}!
     <p> your profile</p>

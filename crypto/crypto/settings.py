@@ -47,6 +47,7 @@ EMAIL_USE_TLS = int(os.environ.get('EMAIL_USE_TLS', '0'))
 INSTALLED_APPS = [
     'coinapi',
     'prime',
+'rest_framework_swagger',
     'rest_framework',
     'rest_framework.authtoken',
     'django_celery_beat',
@@ -135,13 +136,13 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = '/static'
 # DRF configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

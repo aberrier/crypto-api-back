@@ -15,8 +15,10 @@ app_name = 'prime'
 urlpatterns = [
     path('', views.index, name='index'),
     path('register/', views.RegisterView.as_view(), name='register'),
+    # Urls for web users
     path('create/alert/', views.AlertCreate.as_view(), name='alerts_create'),
     path('update/alert/<int:pk>/', views.AlertUpdate.as_view(), name='alerts_update'),
     path('delete/alert/<int:pk>/', views.AlertDelete.as_view(), name='alerts_delete'),
+
     path('', include((router.urls, 'alerts'), namespace='alerts'))
 ]

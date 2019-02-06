@@ -1,11 +1,15 @@
+# Celery tasks relative to CoinAPI
+
 from celery import shared_task
 from .models import Asset
 from .utils import get_list_assets
 
 
 @shared_task(name="coinapi.asset_list")
-# Update the assets periodically
 def asset_list():
+    """
+    Update the list of assets periodically
+    """
     list_stored = [data.value for data in Asset.objects.all()]
     list_new = get_list_assets()
     size_new = 0

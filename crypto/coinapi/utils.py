@@ -4,6 +4,9 @@ import requests
 
 
 def get_list_assets():
+    """
+    Retrieve list of assets
+    """
     headers = {'X-CoinAPI-Key': os.environ.get('COIN_API_KEY', '')}
     r = requests.get('https://rest.coinapi.io/v1/assets', headers=headers)
     if r.status_code / 100 == 2:
@@ -13,10 +16,17 @@ def get_list_assets():
                 assets.append(asset['asset_id'])
         return assets
     else:
-        return Exception(r.content)
+        return {"error": r.content.decode('utf-8')}
 
 
+#
 def get_coin_price(asset, time=None):
+    """
+    Get coin price using the asset id
+    :param asset: str
+    :param time: datetime.datetime.isoformat
+    :return: dict
+    """
     url = 'https://rest.coinapi.io/v1/exchangerate/{}/USD'.format(asset)
     if time is not None:
         url = url + '?time={}'.format(time)

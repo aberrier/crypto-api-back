@@ -7,13 +7,16 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm
 from .models import Alert
-from .serializers import AlertSerializer, UserSerializer
+from .serializers import AlertSerializer
 from .utils import form_cleaner
 
 
 def index(request):
+    """
+    Home page
+    """
     template = loader.get_template('prime/index.html')
     context = {}
     if request.user.is_authenticated:
@@ -22,15 +25,19 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-# View for register new users
 class RegisterView(generic.CreateView):
+    """
+    Register new users
+    """
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
 
-# View for deleting an alert via a browser
 class AlertDelete(APIView):
+    """
+    Delete an alert for web users
+    """
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'prime/alert_create.html'
 
@@ -40,8 +47,10 @@ class AlertDelete(APIView):
         return redirect('prime:index')
 
 
-# View for creating an alert via a form
 class AlertCreate(APIView):
+    """
+    Create an alert for web users
+    """
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'prime/alert_create.html'
 
@@ -61,8 +70,10 @@ class AlertCreate(APIView):
         return redirect('prime:index')
 
 
-# View for updating an alert via a form
 class AlertUpdate(APIView):
+    """
+    Update an alert for web users
+    """
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'prime/alert_update.html'
 

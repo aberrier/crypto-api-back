@@ -1,3 +1,4 @@
+pytest
 psycopg2
 psycopg2-binary
 python-dotenv
@@ -11,3 +12,5 @@ redis
 celery
 django-celery-beat
 gunicorn
+factory_boy
+django-rest-swagger

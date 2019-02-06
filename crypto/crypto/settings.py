@@ -47,7 +47,7 @@ EMAIL_USE_TLS = int(os.environ.get('EMAIL_USE_TLS', '0'))
 INSTALLED_APPS = [
     'coinapi',
     'prime',
-'rest_framework_swagger',
+    'rest_framework_swagger',
     'rest_framework',
     'rest_framework.authtoken',
     'django_celery_beat',
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -142,10 +143,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'api/static'), os.path.join(BASE_DIR, 'static'), os.path.join('/', 'static'), '/')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'crypto/static'), os.path.join(BASE_DIR, 'static'), os.path.join('/', 'static'), '/')
 # DRF configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
